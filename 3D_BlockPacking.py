@@ -1,18 +1,21 @@
 import Reader
 import tensorMaker as Te
+import DialogueWindowHandler as Di
 
+readingPath= Di.DialogueWindow.FileOpen()
+writingPath = Di.DialogueWindow.FileOpen()
 
-cFile= Reader.handler.opener()
-cFile = Reader.handler.intize(cFile)
-MaxSize = cFile[0]
+readFile= Reader.handler.opener(readingPath)
+readFile = Reader.handler.intize(readFile)
+MaxSize = readFile[0]
 
 plist = []
 Max_instance = Te.Tensor.Make(MaxSize)                          #3次元テンソルの作成
 location = [[0],[0],[0]]                              #開始点の座標
 beginpoints = [[],[],[]]
 parts = []
-for ii in range(len(cFile) -1):
-    parts.append(cFile[ii +1])
+for ii in range(len(readFile) -1):
+    parts.append(readFile[ii +1])
 
 def DecidingHandler(part ,name,plist):                             #どの開始点に部品を置くかを決定する
     which_location = 0
@@ -133,4 +136,4 @@ for ii in range(len(parts)):
     write2.append(write)
 
 Reader.handler.initializeCSV(MaxSize)
-Reader.handler.writeCSV(write2)
+Reader.handler.writeCSV(write2,writingPath)

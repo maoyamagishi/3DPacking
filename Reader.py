@@ -1,8 +1,8 @@
 import csv
 
 class handler:
-    def opener():
-        with open(r"C:\Users\maoya\OneDrive\ドキュメント\3D_BlockPacking\blocks.csv","r") as f:
+    def opener(fpath):
+        with open(fpath,"r") as f:
             data = csv.reader(f)
             output = []
             for row in data:
@@ -23,8 +23,8 @@ class handler:
             writer.writerow(keyword)
             writer.writerow(maxsize)
     
-    def writeCSV(matrix):
-        with open(r"C:\Users\maoya\OneDrive\ドキュメント\3D_BlockPacking\outtest.csv","a",newline="") as f:
+    def writeCSV(matrix,writingPath):
+        with open(writingPath,"a",newline="") as f:
             writer = csv.writer(f)
             for ii in range(len(matrix)):
                 writer.writerow(matrix[ii])
